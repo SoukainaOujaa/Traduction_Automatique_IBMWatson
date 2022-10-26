@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Translation Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/identifier.css') }}">
+</head>
+<body>
+
+<div class="topnav">
+        <a class="active" href="{{ url_for('home') }}">Welcome !</a>
+        <a href="{{ url_for('home') }}">Text translation</a>
+        <a href="{{ url_for('audio') }}">Audio translation</a>
+        <a href="{{ url_for('micro') }}">Microphone</a>
+        <a href="{{ url_for('identifier') }}">Language identification</a>
+        
+</div>
+
+<img src='static\ewa.png' alt="logo" width="350" height="170">
+        <br>
+
+    <form method="post" action="{{url_for('result3')}}">
+        
+        <label for="fname">Text:</label>
+        <input type="text" name="text"/>
+        <input type="submit" value="Identify" id="Identify"/>
+
+        
+    </form>
+    <textarea readonly rows="13" cols="80" minlength="10" maxlength="30">
+
+
+        Model : {{ model }}
+
+
+
+
+        Confidence : {{ confidence }}
+
+
+    </textarea>
+
+
+</body>
+</html>

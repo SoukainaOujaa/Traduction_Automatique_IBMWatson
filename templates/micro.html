@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr , en , ar , ja , de ,es,ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Translation Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/audio.css') }}">
+</head>
+<body>
+
+<div class="topnav">
+        <a class="active" href="{{ url_for('home') }}">Welcome !</a>
+        <a href="{{ url_for('home') }}">Text translation</a>
+        <a href="{{ url_for('audio') }}">Audio translation</a>
+        <a href="{{ url_for('micro') }}">Microphone</a>
+        <a href="{{ url_for('identifier') }}">Language identification</a>
+        
+</div>
+
+<img src='static\maybe.png' alt="logo" width="120" height="200">
+        <br>
+
+
+
+
+    <form method="post" action="{{url_for('result4')}}">
+
+
+
+
+        <label for="Speech Recognition">Speech Recognition</label>
+        <input type="text" name="speechToText" id="speechToText" placeholder="Speak Something" onclick="record()">
+        <label for="fname" id="lang" >Model:</label>
+        <input type="text" name="model"/>
+        <input type="submit" value="Translate" id="Translate"/>
+
+
+        <script>
+            function record() {
+                //var language = document.getElementById('lang').value;
+                var recognition = new webkitSpeechRecognition();
+                recognition.lang = "";
+    
+                recognition.onresult = function(event) {
+                    // console.log(event);
+                    document.getElementById('speechToText').value = event.results[0][0].transcript;
+                }
+                recognition.start();
+    
+            }
+        </script>
+
+
+
+        <textarea readonly rows="11" cols="80" minlength="10" maxlength="30">
+
+
+            Translation : {{ translation }}
+
+
+            Word count :  {{ wordcount }}
+    
+    
+            Characters :  {{ character }}
+    
+    
+        </textarea>
+    </form>
+
+
+</body>
+</html>

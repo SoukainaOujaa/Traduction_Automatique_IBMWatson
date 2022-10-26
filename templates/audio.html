@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Translation Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/audio.css') }}">
+</head>
+<body>
+
+<div class="topnav">
+        <a class="active" href="{{ url_for('home') }}">Welcome !</a>
+        <a href="{{ url_for('home') }}">Text translation</a>
+        <a href="{{ url_for('audio') }}">Audio translation</a>
+        <a href="{{ url_for('micro') }}">Microphone</a>
+        <a href="{{ url_for('identifier') }}">Language identification</a>
+        
+</div>
+
+<img src='static\better.png' alt="logo" width="65" height="170">
+        <br>
+<div id="speechContainer">
+    <form method="post" enctype="multipart/form-data" action="{{url_for('result2')}}">
+        <label for="fname">Audio File:</label>
+        <input type="file" name="file"/>
+
+        
+        
+        <label for="fname">Model:</label>
+        <input type="text" name="model"/>
+        <input type="submit" value="Translate" id="Translate"/>
+
+        <textarea readonly rows="12" cols="80" minlength="10" maxlength="30">
+
+
+            Translation : {{ translation }}
+
+
+            Word count :  {{ wordcount }}
+    
+    
+            Characters :  {{ character }}
+    
+    
+    
+        </textarea>
+    </form>
+
+</div>
+</body>
+</html>
